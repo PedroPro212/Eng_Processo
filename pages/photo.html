@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionário foto</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/photo.css">
+</head>
+<body class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <img id="imagem" alt="Imagem">
+        </div>
+        <div class="col-sm-12 text-center">
+            <div class="copy">
+                <div class="coppy-quadro">
+                    <button onclick="copiarTexto()">Clique aqui</button>
+                    <label for="" id="lblImagem-url"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Obtém o parâmetro da URL
+        const urlBase = 'https://pedropro212.github.io/Eng_Processo/';
+        const urlParams = new URLSearchParams(window.location.search);
+        const imgSrc = urlParams.get('img');
+
+        // Remove "../" da URL da imagem
+        const cleanImgSrc = imgSrc.replace(/\.\.\//g, '');
+
+        // Define o src da imagem
+        if (imgSrc) {
+            document.getElementById('imagem').src = imgSrc;
+            document.getElementById('lblImagem-url').innerText = urlBase + cleanImgSrc;
+        } else {
+            document.getElementById('imagem').alt = 'Imagem não encontrada';
+            document.getElementById('image-url').innerText = 'URL não disponível';
+        }
+
+        // Função para copiar o texto da label para a área de transferência
+        function copiarTexto() {
+            const texto = document.getElementById('lblImagem-url').innerText;
+
+            navigator.clipboard.writeText(texto).then(() => {
+                swal('URL copiada para a área de transferência!');
+            }).catch(err => {
+                console.error('Erro ao copiar texto: ', err);
+            });
+        }
+    </script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
