@@ -3,7 +3,7 @@ from rembg import remove
 from PIL import Image
 
 # Define o caminho da pasta onde as imagens estão
-pasta = 'fundo'
+pasta = 'imgFundo'
 
 # Percorre todos os arquivos na pasta
 for nome_arquivo in os.listdir(pasta):
